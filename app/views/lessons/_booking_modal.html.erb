@@ -1,0 +1,28 @@
+<!-- Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Book A Lesson</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @lesson, html: { multipart: true } do |f| %>
+          <div id="#bookingID"></div>
+          <div class="input-append date" id="dp" data-date="<%= DateTime.now.strftime("%Y%m%d") %>" data-date-format="yyyymmdd">
+            <%= f.input :booked_date, label: "Date", as: :string  %>
+            <%= f.input :booked_time, label: "Time", as: :string %>
+            Class Length:<br>
+            <%= f.collection_radio_buttons :lesson_length, [['60', '1 hour'] ,['90', '1.5 hours']],:first, :last %><br>
+            Location:<br>
+            <%= f.collection_radio_buttons :lesson_location, [["Teacher's Apartment", "Teacher's Apartment"] ,['Skype', 'Skype'], ['Other', 'Other']],:first, :last %><br>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-primary">Cancel</button>
+          <%= f.button :submit, 'Book', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

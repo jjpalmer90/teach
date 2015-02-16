@@ -1,0 +1,80 @@
+// Place all the styles related to the Lessons controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+html, body {
+	background-color: #fff;
+}
+
+.calendar-header {
+	text-align: center;
+	font-size: 175%;
+}
+
+.calendar-row {
+	background-color: #FAFAFA;
+}
+
+.day {
+   text-align: left;
+
+}
+
+.table {
+	border: 1px solid #999;
+	border-collapse: collapse;
+	th {
+   		text-align: center;
+   		border: 1px solid #999;
+   		font-size: 80%;
+   		text-transform: uppercase;
+   	}
+    td {
+   		border: 1px solid #999;
+   		height: 7em;
+   		width: 5em;
+   		padding: 5px;
+   		vertical-align: top;
+   	}
+
+}
+
+#week_scheduler {
+   border: 1px solid #999;
+   border-collapse: collapse;
+   th {
+         text-align: center;
+         border: 1px solid #999;
+         font-size: 80%;
+         text-transform: uppercase;
+      }
+    td {
+         border: 1px solid #999;
+         height: 15px;
+         width: 8em;
+         padding: 2px;
+         vertical-align: center;
+         text-align: center;
+      }
+   .time_column {
+      background-color: #FFF;
+   }
+   .scheduler_row {
+      background-color: #FAFAFA;
+   }
+
+}
+
+.today {
+	background-color: #F5F6CE;
+}
+
+.prev-month {
+	background-color: #BDBDBD;
+}
+
+.next-month {
+	background-color: #BDBDBD;
+}
+

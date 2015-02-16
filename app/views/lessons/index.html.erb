@@ -1,0 +1,57 @@
+<div class="container">
+  <h1>Schedule</h1>
+  <br>
+  <center><h2>The Week of: <%= @week_start.strftime("%B %d") %> - <%= @week_end.strftime("%B %d")%></h2></center>
+  <br>
+  <br>
+  <div class="container">
+    <table id="week_scheduler">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Sunday</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @timeslots.each_with_index do |t, i| %>
+        <tr class="scheduler_row">
+          <td><div class="time_column"><%= t.slot %></div></td>
+          <td id="<%= ("08:00:00".to_datetime+(i*30).minutes).strftime("%H:%M")+"_"+@week_start.strftime("%Y%m%d") %>" data-toggle="<%= @timeslot_grid[i].clickable %>" data-id="<%= ("08:00:00".to_datetime+(i*30).minutes).strftime("%H:%M")+"_"+@week_start.strftime("%Y%m%d") %>" data-target="#bookingModal" class="<%= @timeslot_grid[i].availability %>"></td>
+         <td id="<%= ("08:00:00".to_datetime+(i*30).minutes).strftime("%H:%M")+"_"+(@week_start+1.day).strftime("%Y%m%d") %>" data-toggle="<%= @timeslot_grid[i+29].clickable %>" data-id="<%= ("08:00:00".to_datetime+(i*30).minutes).strftime("%H:%M")+"_"+(@week_start+1.day).strftime("%Y%m%d") %>" data-target="#bookingModal" class="<%= @timeslot_grid[i+29].availability %>"></td>
+         <td id="<%= ("08:00:00".to_datetime+(i*30).minutes).strftime("%H:%M")+"_"+(@week_start+2.day).strftime("%Y%m%d") %>" data-toggle="<%= @timeslot_grid[i+58].clickable %>" data-id="<%= ("08:00:00".to_datetime+(i*30).minutes).strftime("%H:%M")+"_"+(@week_start+2.day).strftime("%Y%m%d") %>" data-target="#bookingModal" class="<%= @timeslot_grid[i+58].availability %>"></td>
+         <td id="<%= ("08:00:00".to_datetime+(i*30).minutes).strftime("%H:%M")+"_"+(@week_start+3.day).strftime("%Y%m%d") %>" data-toggle="<%= @timeslot_grid[i+87].clickable %>" data-id="<%= ("08:00:00".to_datetime+(i*30).minutes).strftime("%H:%M")+"_"+(@week_start+3.day).strftime("%Y%m%d") %>" data-target="#bookingModal" class="<%= @timeslot_grid[i+87].availability %>"></td>
+         <td id="<%= ("08:00:00".to_datetime+(i*30).minutes).strftime("%H:%M")+"_"+(@week_start+4.day).strftime("%Y%m%d") %>" data-toggle="<%= @timeslot_grid[i+116].clickable %>" data-id="<%= ("08:00:00".to_datetime+(i*30).minutes).strftime("%H:%M")+"_"+(@week_start+4.day).strftime("%Y%m%d") %>" data-target="#bookingModal" class="<%= @timeslot_grid[i+116].availability %>"></td>
+         <td id="<%= ("08:00:00".to_datetime+(i*30).minutes).strftime("%H:%M")+"_"+(@week_start+5.day).strftime("%Y%m%d") %>" data-toggle="<%= @timeslot_grid[i+145].clickable %>" data-id="<%= ("08:00:00".to_datetime+(i*30).minutes).strftime("%H:%M")+"_"+(@week_start+5.day).strftime("%Y%m%d") %>" data-target="#bookingModal" class="<%= @timeslot_grid[i+145].availability %>"></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<br>
+<br>
+
+<%= render 'booking_modal' %>
+<br>
+<br>
+  <%= month_calendar table: {class: "table table-bordered"}, tr: {class: "calendar-row"}, day_names: "date.day_names", events: @lessons do |date, lessons| %>
+
+    <%= date.strftime("%d") %>
+
+    <% lessons.each do |lesson| %>
+      <div>
+      <% if lesson.booked_date == date %>
+        <%= lesson.booked_date %>
+      <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+
+
+
